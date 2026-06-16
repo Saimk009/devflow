@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --color-accent: #22d3ee;
+    --color-terminal-950: #0a0e14;
+    --color-terminal-900: #0d1117;
+    --color-terminal-800: #161b22;
+    --color-terminal-700: #21262d;
+    --color-pipeline-success: #22c55e;
+    --color-pipeline-running: #3b82f6;
+    --color-slate-200: #e2e8f0;
+    --color-slate-400: #94a3b8;
+    --color-slate-500: #64748b;
+    --density-gap: 1rem;
+    --density-padding: 1rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply min-h-screen bg-terminal-950 font-mono text-slate-200 antialiased;
+  }
+
+  body[data-density="compact"] {
+    --density-gap: 0.75rem;
+    --density-padding: 0.75rem;
+  }
+
+  body[data-density="default"] {
+    --density-gap: 1rem;
+    --density-padding: 1rem;
+  }
+
+  body[data-density="comfortable"] {
+    --density-gap: 1.25rem;
+    --density-padding: 1.25rem;
+  }
+}
+
+@keyframes dashdraw {
+  from {
+    stroke-dashoffset: 12;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Runtime appearance preferences. These keep Tailwind's default cyan design while
+   allowing the Settings page to swap the accent color without a rebuild. */
+.text-cyan-400,
+.hover\:text-cyan-400:hover {
+  color: var(--color-accent) !important;
+}
+
+.bg-cyan-400,
+.hover\:bg-cyan-400:hover {
+  background-color: var(--color-accent) !important;
+}
+
+.border-cyan-400,
+.border-cyan-400\/60,
+.border-cyan-400\/70,
+.hover\:border-cyan-400\/30:hover,
+.hover\:border-cyan-400\/40:hover,
+.hover\:border-cyan-400\/50:hover {
+  border-color: var(--color-accent) !important;
+}
+
+.ring-cyan-400,
+.focus\:ring-cyan-400:focus,
+.focus-visible\:ring-cyan-400:focus-visible {
+  --tw-ring-color: var(--color-accent) !important;
+}
+
+.hover\:bg-cyan-400\/10:hover,
+.bg-cyan-400\/10 {
+  background-color: color-mix(in srgb, var(--color-accent) 10%, transparent) !important;
+}
+
+.bg-cyan-400\/5 {
+  background-color: color-mix(in srgb, var(--color-accent) 5%, transparent) !important;
+}
+
+.border-cyan-400\/30 {
+  border-color: color-mix(in srgb, var(--color-accent) 30%, transparent) !important;
+}
+
+body[data-density="compact"] .p-6,
+body[data-density="comfortable"] .p-6 {
+  padding: var(--density-padding) !important;
+}
+
+body[data-density="compact"] .p-5,
+body[data-density="comfortable"] .p-5 {
+  padding: var(--density-padding) !important;
+}
+
+body[data-density="compact"] .gap-4,
+body[data-density="comfortable"] .gap-4 {
+  gap: var(--density-gap) !important;
+}
+
+body[data-density="compact"] .space-y-8 > :not([hidden]) ~ :not([hidden]),
+body[data-density="comfortable"] .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-bottom: calc(var(--density-gap) * var(--tw-space-y-reverse)) !important;
+  margin-top: calc(var(--density-gap) * calc(1 - var(--tw-space-y-reverse))) !important;
+}
